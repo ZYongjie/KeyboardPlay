@@ -8,9 +8,50 @@
 import Cocoa
 import AVFoundation
 
+struct PlayableKey: Equatable, Hashable {
+    let original: Character
+    let audioName: String
+    let displayName: String
+}
+
+extension PlayableKey {
+    init(original: Character) {
+        self.init(original: original, audioName: .init(original), displayName: .init(original))
+    }
+    
+    init(original: Character, others: String) {
+        self.init(original: original, audioName: others, displayName: others)
+    }
+}
+
 class ViewController: NSViewController {
     @IBOutlet weak var label: NSTextField!
     var player: AVAudioPlayer?
+    let specialKeys: [PlayableKey] = [
+         .init(original: "\t", others: "tab"),
+         .init(original: "\r", others: "enter"),
+         .init(original: "\u{1B}", others: "caps"),
+         .init(original: " ", others: "space"),
+         .init(original: "\u{7F}", others: "backspace"),
+         .init(original: "\u{F700}", audioName: "up", displayName: "↑"),
+         .init(original: "\u{F701}", audioName: "down", displayName: "↓"),
+         .init(original: "\u{F702}", audioName: "left", displayName: "←"),
+         .init(original: "\u{F703}", audioName: "right", displayName: "→"),
+         // 无法已.开头命名文件名
+         .init(original: ".", audioName: "period", displayName: "."),
+         // 无法匹配到/命名的文件
+         .init(original: "/", audioName: "slash", displayName: "/"),
+         // 中文字符
+         .init(original: "·", others: "`"),
+         .init(original: "【", others: "["),
+         .init(original: "】", others: "]"),
+         .init(original: "、", others: "\\"),
+         .init(original: "；", others: ";"),
+         .init(original: "‘", others: "'"),
+         .init(original: "，", others: ","),
+         .init(original: "。", audioName: "period", displayName: "."),
+         .init(original: "/", audioName: "slash", displayName: "/"),
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,18 +75,22 @@ class ViewController: NSViewController {
     
     private func handleKeyDown(event: NSEvent) {
         guard let char = event.characters?.first else { return }
-        play(name: .init(char))
+        let playItem = specialKeys.first(where: { $0.original == char }) ?? .init(original: char)
+        play(item: playItem)
     }
 
-    private func play(name: String) {
+    private func play(item: PlayableKey) {
+        print("keyDown:", item.original)
         player?.stop()
-        if let url = Bundle.main.url(forResource: name, withExtension: "wav") {
+        let bundle = Bundle.main
+        if let url = bundle.url(forResource: item.audioName, withExtension: "wav")
+            ?? bundle.url(forResource: item.audioName, withExtension: "mp3"){
             do {
                 
                 player = try AVAudioPlayer(contentsOf: url)
                 player?.prepareToPlay()
                 player?.play()
-                label.stringValue = name.uppercased()
+                label.stringValue = item.displayName.capitalized
             } catch let error {
                 print("error", error)
             }
