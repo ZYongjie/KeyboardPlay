@@ -64,6 +64,22 @@ class ViewController: NSViewController {
             self.handleKeyDown(event: event)
             return nil
         }
+        
+        var lastModifierFlags: NSEvent.ModifierFlags?
+        NSEvent.addLocalMonitorForEvents(matching: .flagsChanged) { event in
+            let modifierKeys: [NSEvent.ModifierFlags] = [.shift, .control, .command, .option]
+            
+            print("flagsChanged", event )
+            var flags = event.modifierFlags
+            if let last = lastModifierFlags {
+                flags = flags.subtracting(last)
+            }
+            print("is command", flags.isSuperset(of: .command))
+            print("is ctrl", flags.isSuperset(of: .control))
+            
+            lastModifierFlags = event.modifierFlags
+            return nil
+        }
     }
     
 
