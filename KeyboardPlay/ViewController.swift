@@ -10,17 +10,18 @@ import AVFoundation
 
 protocol Playable {
     var audioName: String { get }
-    var displayName: String { get }
 }
 
 protocol Displayable {
-    var imageName: String { get }
+    var displayName: String { get }
+    var imageName: String? { get }
 }
 
-struct PlayableKey: Equatable, Hashable, Playable {
+struct PlayableKey: Equatable, Hashable, Playable, Displayable {
     let original: Character
     let audioName: String
     let displayName: String
+    let imageName: String? = nil
 }
 
 extension PlayableKey {
@@ -33,15 +34,29 @@ extension PlayableKey {
     }
 }
 
-struct PlayableModifierKey: Playable {
+struct PlayableModifierKey: Playable, Displayable {
     let original: NSEvent.ModifierFlags
     let audioName: String
     let displayName: String
+    let imageName: String? = nil
 }
 
 extension PlayableModifierKey {
     init(original: NSEvent.ModifierFlags, others: String) {
         self.init(original: original, audioName: others, displayName: others)
+    }
+}
+
+struct FruitKey: Playable, Displayable {
+    let original: Character
+    let audioName: String
+    let displayName: String
+    let imageName: String?
+}
+
+extension FruitKey {
+    init(original: Character, others: String) {
+        self.init(original: original, audioName: others, displayName: others, imageName: others)
     }
 }
 
@@ -89,6 +104,27 @@ class ViewController: NSViewController {
         .init(original: .shift, others: "shift")
     ]
     
+    let fruits: [FruitKey] = [
+        .init(original: "a", others: "apple"),
+        .init(original: "b", others: "banana"),
+        .init(original: "c", others: "cherry"),
+        .init(original: "d", others: "durian"),
+        .init(original: "e", others: "eggplant"),
+        .init(original: "f", others: "fig"),
+        .init(original: "g", others: "grape"),
+        .init(original: "h", others: "haw"),
+        .init(original: "k", others: "kiwifruit"),
+        .init(original: "l", others: "lichee"),
+        .init(original: "m", others: "mango"),
+        .init(original: "n", others: "nectarine"),
+        .init(original: "o", others: "orange"),
+        .init(original: "p", others: "pear"),
+        .init(original: "r", others: "rambutan"),
+        .init(original: "s", others: "strawberry"),
+        .init(original: "t", others: "tangerine"),
+        .init(original: "w", others: "watermelon"),
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -115,11 +151,26 @@ class ViewController: NSViewController {
         }
     }
     
-    var lastDownKey: CharacterSet?
+    var lastCharacter: Character?
+    var isLastFruit = false
     private func handleKeyDown(event: NSEvent) {
         guard let char = event.characters?.first else { return }
-        let playItem = specialKeys.first(where: { $0.original == char }) ?? .init(original: char)
-        play(item: playItem)
+        
+        let tryFruit = lastCharacter == char && !isLastFruit
+        
+        lastCharacter = char
+        guard tryFruit,
+              let fruit = fruits.first(where: { $0.original == char }) else {
+            isLastFruit = false
+            let playItem = specialKeys.first(where: { $0.original == char }) ?? .init(original: char)
+            play(item: playItem)
+            display(item: playItem)
+            return
+        }
+        
+        isLastFruit = true
+        play(item: fruit)
+        display(item: fruit)
     }
     
     private var lastModifierFlags: NSEvent.ModifierFlags?
@@ -137,6 +188,7 @@ class ViewController: NSViewController {
         guard let playItem = playItem else { return }
         
         play(item: playItem)
+        display(item: playItem)
     }
 
     private func play(item: Playable) {
@@ -149,7 +201,6 @@ class ViewController: NSViewController {
                 player = try AVAudioPlayer(contentsOf: url)
                 player?.prepareToPlay()
                 player?.play()
-                label.stringValue = item.displayName.capitalized
             } catch let error {
                 print("error", error)
             }
@@ -157,7 +208,8 @@ class ViewController: NSViewController {
     }
     
     private func display(item: Displayable) {
-        image.image = .init(named: item.imageName)
+        label.stringValue = item.displayName.capitalized
+        image.image = .init(named: item.imageName ?? "")
     }
 }
 

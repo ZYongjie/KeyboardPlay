@@ -706,11 +706,11 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="KeyboardPlay" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="1316" height="1418"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1316" height="1738"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0H4-xF-kFo">
-                                <rect key="frame" x="305" y="650" width="707" height="118"/>
+                                <rect key="frame" x="305" y="810" width="707" height="118"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="按字母键盘开始" id="bEo-df-tmY">
                                     <font key="font" metaFont="systemSemibold" size="100"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -718,11 +718,12 @@
                                 </textFieldCell>
                             </textField>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XAn-71-esC">
-                                <rect key="frame" x="338" y="768" width="640" height="640"/>
+                                <rect key="frame" x="258" y="928" width="800" height="800"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="800" id="1ou-bO-cL8"/>
                                     <constraint firstAttribute="width" secondItem="XAn-71-esC" secondAttribute="height" multiplier="1:1" id="ZZ9-ti-UBV"/>
                                 </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="fruits" id="6AQ-oN-BFo"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="6AQ-oN-BFo"/>
                             </imageView>
                         </subviews>
                         <constraints>
@@ -743,7 +744,4 @@
             <point key="canvasLocation" x="164" y="905.5"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="fruits" width="640" height="426.5"/>
-    </resources>
 </document>

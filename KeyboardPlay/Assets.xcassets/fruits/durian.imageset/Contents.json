@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "durian.jpeg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "苹果.jpeg",
       "idiom" : "universal",
       "scale" : "2x"
     },
