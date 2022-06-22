@@ -8,7 +8,16 @@
 import Cocoa
 import AVFoundation
 
-struct PlayableKey: Equatable, Hashable {
+protocol Playable {
+    var audioName: String { get }
+    var displayName: String { get }
+}
+
+protocol Displayable {
+    var imageName: String { get }
+}
+
+struct PlayableKey: Equatable, Hashable, Playable {
     let original: Character
     let audioName: String
     let displayName: String
@@ -24,7 +33,20 @@ extension PlayableKey {
     }
 }
 
+struct PlayableModifierKey: Playable {
+    let original: NSEvent.ModifierFlags
+    let audioName: String
+    let displayName: String
+}
+
+extension PlayableModifierKey {
+    init(original: NSEvent.ModifierFlags, others: String) {
+        self.init(original: original, audioName: others, displayName: others)
+    }
+}
+
 class ViewController: NSViewController {
+    @IBOutlet weak var image: NSImageView!
     @IBOutlet weak var label: NSTextField!
     var player: AVAudioPlayer?
     let specialKeys: [PlayableKey] = [
@@ -51,6 +73,20 @@ class ViewController: NSViewController {
          .init(original: "，", others: ","),
          .init(original: "。", audioName: "period", displayName: "."),
          .init(original: "/", audioName: "slash", displayName: "/"),
+//
+         .init(original: "\u{F746}", others: "insert"),
+         .init(original: "\u{F729}", others: "home"),
+         .init(original: "\u{F72C}", audioName: "pageup", displayName: "page up"),
+         .init(original: "\u{F728}", others: "delete"),
+         .init(original: "\u{F72B}", others: "end"),
+         .init(original: "\u{F72D}", audioName: "pagedown", displayName: "page down"),
+    ]
+    
+    let modifierKeys: [PlayableModifierKey] = [
+        .init(original: .command, others: "alter"),
+        .init(original: .option, others: "win"),
+        .init(original: .control, others: "control"),
+        .init(original: .shift, others: "shift")
     ]
     
     override func viewDidLoad() {
@@ -65,21 +101,11 @@ class ViewController: NSViewController {
             return nil
         }
         
-        var lastModifierFlags: NSEvent.ModifierFlags?
         NSEvent.addLocalMonitorForEvents(matching: .flagsChanged) { event in
-            let modifierKeys: [NSEvent.ModifierFlags] = [.shift, .control, .command, .option]
-            
-            print("flagsChanged", event )
-            var flags = event.modifierFlags
-            if let last = lastModifierFlags {
-                flags = flags.subtracting(last)
-            }
-            print("is command", flags.isSuperset(of: .command))
-            print("is ctrl", flags.isSuperset(of: .control))
-            
-            lastModifierFlags = event.modifierFlags
+            self.handleflagsChanged(event: event)
             return nil
         }
+        
     }
     
 
@@ -89,14 +115,31 @@ class ViewController: NSViewController {
         }
     }
     
+    var lastDownKey: CharacterSet?
     private func handleKeyDown(event: NSEvent) {
         guard let char = event.characters?.first else { return }
         let playItem = specialKeys.first(where: { $0.original == char }) ?? .init(original: char)
         play(item: playItem)
     }
+    
+    private var lastModifierFlags: NSEvent.ModifierFlags?
+    private func handleflagsChanged(event: NSEvent) {
+        var flags = event.modifierFlags
+        if let last = lastModifierFlags {
+            flags = flags.subtracting(last)
+        }
+        let playItem = self.modifierKeys.first { element in
+            flags.isSuperset(of: element.original)
+        }
+        
+        lastModifierFlags = event.modifierFlags
+        
+        guard let playItem = playItem else { return }
+        
+        play(item: playItem)
+    }
 
-    private func play(item: PlayableKey) {
-        print("keyDown:", item.original)
+    private func play(item: Playable) {
         player?.stop()
         let bundle = Bundle.main
         if let url = bundle.url(forResource: item.audioName, withExtension: "wav")
@@ -111,6 +154,10 @@ class ViewController: NSViewController {
                 print("error", error)
             }
         }
+    }
+    
+    private func display(item: Displayable) {
+        image.image = .init(named: item.imageName)
     }
 }
 

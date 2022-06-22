@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -686,7 +687,6 @@
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-                        <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="594" y="358" width="1305" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <connections>
@@ -699,37 +699,51 @@
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="85.5" y="247"/>
+            <point key="canvasLocation" x="186" y="232"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="KeyboardPlay" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="1316" height="481"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1316" height="1418"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0H4-xF-kFo">
-                                <rect key="frame" x="305" y="182" width="707" height="118"/>
+                                <rect key="frame" x="305" y="650" width="707" height="118"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="按字母键盘开始" id="bEo-df-tmY">
                                     <font key="font" metaFont="systemSemibold" size="100"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XAn-71-esC">
+                                <rect key="frame" x="338" y="768" width="640" height="640"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="XAn-71-esC" secondAttribute="height" multiplier="1:1" id="ZZ9-ti-UBV"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="fruits" id="6AQ-oN-BFo"/>
+                            </imageView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="0H4-xF-kFo" firstAttribute="top" secondItem="XAn-71-esC" secondAttribute="bottom" id="42M-wf-iTj"/>
+                            <constraint firstItem="XAn-71-esC" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="10" id="R3X-5b-WbJ"/>
+                            <constraint firstItem="XAn-71-esC" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="W7u-qL-lOq"/>
                             <constraint firstItem="0H4-xF-kFo" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="gf4-B4-zFR"/>
                             <constraint firstItem="0H4-xF-kFo" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="xkR-3K-FXr"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="image" destination="XAn-71-esC" id="lXG-sw-Xng"/>
                         <outlet property="label" destination="0H4-xF-kFo" id="arr-cq-onM"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="91" y="764.5"/>
+            <point key="canvasLocation" x="164" y="905.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="fruits" width="640" height="426.5"/>
+    </resources>
 </document>

@@ -15,6 +15,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        guard let window = NSApplication.shared.windows.first,
+        let screenFrame = NSScreen.main?.frame else { return }
+        window.setFrame(screenFrame, display: true)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
