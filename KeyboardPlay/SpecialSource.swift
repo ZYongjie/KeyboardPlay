@@ -9,6 +9,8 @@ import Foundation
 import AppKit
 
 struct SpecialSource: PlayItem {
+    var type: MediaType
+    
     let special: NSEvent.SpecialKey
     
     var event: PlayItemGenerator.Event {
@@ -23,25 +25,29 @@ struct SpecialSource: PlayItem {
 }
 
 extension SpecialSource {
-    init(special: NSEvent.SpecialKey, audioName: String) {
-        self.init(special: special, audioName: audioName, displayName: audioName)
+    init(audio withSpecial: NSEvent.SpecialKey, audioName: String) {
+        self.init(type: .audio, special: withSpecial, audioName: audioName, displayName: audioName)
+    }
+    
+    init(audio withSpecial: NSEvent.SpecialKey, audioName: String, displayName: String) {
+        self.init(type: .audio, special: withSpecial, audioName: audioName, displayName: displayName)
     }
     
     static var all: [SpecialSource] {
         [
-            .init(special: .tab, audioName: "tab"),
-            .init(special: .carriageReturn, audioName: "enter"),
-            .init(special: .delete, audioName: "backspace"),
-            .init(special: .init(rawValue: 63302), audioName: "insert"),
-            .init(special: .home, audioName: "home"),
-            .init(special: .pageUp, audioName: "pageup", displayName: "page up"),
-            .init(special: .deleteForward, audioName: "delete"),
-            .init(special: .end, audioName: "end"),
-            .init(special: .pageDown, audioName: "pagedown", displayName: "page down"),
-            .init(special: .upArrow, audioName: "up", displayName: "↑"),
-            .init(special: .downArrow, audioName: "down", displayName: "↓"),
-            .init(special: .leftArrow, audioName: "left", displayName: "←"),
-            .init(special: .rightArrow, audioName: "right", displayName: "→"),
+            .init(audio: .tab, audioName: "tab"),
+            .init(audio: .carriageReturn, audioName: "enter"),
+            .init(audio: .delete, audioName: "backspace"),
+            .init(audio: .init(rawValue: 63302), audioName: "insert"),
+            .init(audio: .home, audioName: "home"),
+            .init(audio: .pageUp, audioName: "pageup", displayName: "page up"),
+            .init(audio: .deleteForward, audioName: "delete"),
+            .init(audio: .end, audioName: "end"),
+            .init(audio: .pageDown, audioName: "pagedown", displayName: "page down"),
+            .init(audio: .upArrow, audioName: "up", displayName: "↑"),
+            .init(audio: .downArrow, audioName: "down", displayName: "↓"),
+            .init(audio: .leftArrow, audioName: "left", displayName: "←"),
+            .init(audio: .rightArrow, audioName: "right", displayName: "→"),
         ]
     }
 }

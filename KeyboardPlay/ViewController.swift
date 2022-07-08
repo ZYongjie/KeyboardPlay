@@ -9,7 +9,20 @@ import Cocoa
 import AVFoundation
 
 protocol Playable {
+    var type: MediaType { get }
     var audioName: String { get }
+    var fileExtension: String { get }
+}
+
+extension Playable {
+    var fileExtension: String {
+        switch type {
+        case .audio:
+            return "mp3"
+        case .video:
+            return "mp4"
+        }
+    }
 }
 
 protocol Displayable {
@@ -22,7 +35,9 @@ class ViewController: NSViewController {
     @IBOutlet weak var label: NSTextField!
     lazy var generator = PlayItemGenerator()
     
-    var player: AVAudioPlayer?
+    var audioPlayer: AVAudioPlayer?
+    var videoPlayerLayer: AVPlayerLayer?
+    var videoPlayer: AVPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,19 +72,38 @@ class ViewController: NSViewController {
     }
 
     private func play(item: Playable) {
-        player?.stop()
+        audioPlayer?.stop()
+        videoPlayer?.pause()
+        videoPlayerLayer?.removeFromSuperlayer()
+        
         let bundle = Bundle.main
-        if let url = bundle.url(forResource: item.audioName, withExtension: "wav")
-            ?? bundle.url(forResource: item.audioName, withExtension: "mp3"){
+        if let url = bundle.url(forResource: item.audioName, withExtension: item.fileExtension) {
             do {
-                
-                player = try AVAudioPlayer(contentsOf: url)
-                player?.prepareToPlay()
-                player?.play()
+                switch item.type {
+                case .audio:
+                    try playAudio(url: url)
+                case .video:
+                    try playVideo(url: url)
+                }
             } catch let error {
                 print("error", error)
             }
         }
+    }
+    
+    private func playAudio(url: URL) throws {
+        audioPlayer = try AVAudioPlayer(contentsOf: url)
+        audioPlayer?.prepareToPlay()
+        audioPlayer?.play()
+    }
+    
+    private func playVideo(url: URL) throws {
+        videoPlayer = AVPlayer(url: url)
+        videoPlayer?.play()
+        let playerLayer = AVPlayerLayer(player: videoPlayer)
+        playerLayer.frame = image.bounds
+        image.layer?.insertSublayer(playerLayer, at: 0)
+        videoPlayerLayer = playerLayer
     }
     
     private func display(item: Displayable) {

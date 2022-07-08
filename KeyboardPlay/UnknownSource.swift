@@ -8,6 +8,8 @@
 import Foundation
 
 struct UnknownSource: PlayItem {
+    var type: MediaType = .audio
+    
     let event: PlayItemGenerator.Event = .unknown
     
     let audioName: String = "encounterError"

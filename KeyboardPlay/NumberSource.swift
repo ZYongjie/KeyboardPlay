@@ -8,6 +8,8 @@
 import Foundation
 
 struct NumberSource: PlayItem {
+    var type: MediaType
+    
     let char: Character
     
     var event: PlayItemGenerator.Event {
@@ -29,6 +31,6 @@ struct NumberSource: PlayItem {
 extension NumberSource {
     static var all: [NumberSource] {
         (0...9).compactMap({ "\($0)".first })
-            .map({ .init(char: $0) })
+            .map({ .init(type: .audio, char: $0) })
     }
 }

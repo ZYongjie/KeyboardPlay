@@ -14,6 +14,8 @@ struct OtherSource: PlayItem {
         .otherKeyDown(char)
     }
     
+    var type: MediaType
+    
     var audioName: String
     
     var displayName: String
@@ -22,8 +24,8 @@ struct OtherSource: PlayItem {
 }
 
 extension OtherSource {
-    init(_ char: Character) {
-        self.init(char: char, audioName: .init(char), displayName: .init(char))
+    init(audio withChar: Character) {
+        self.init(char: withChar, type: .audio, audioName: .init(withChar), displayName: .init(withChar))
     }
     
     static var all: [OtherSource] {
@@ -48,33 +50,33 @@ extension OtherSource {
         var source: OtherSource {
             switch self {
             case .caps:
-                return .init(char: "\u{1B}", audioName: "caps", displayName: "caps")
+                return .init(char: "\u{1B}", type: .audio, audioName: "caps", displayName: "caps")
             case .space:
-                return .init(char: " ", audioName: "space", displayName: "space")
+                return .init(char: " ", type: .audio, audioName: "space", displayName: "space")
             case .backquote:
-                return .init("`")
+                return .init(audio: "`")
             case .subtraction:
-                return .init("-")
+                return .init(audio: "-")
             case .equal:
-                return .init("=")
+                return .init(audio: "=")
             case .leftSquareBracket:
-                return .init("[")
+                return .init(audio: "[")
             case .rightSquareBracket:
-                return .init("]")
+                return .init(audio: "]")
             case .semicolon:
-                return .init(";")
+                return .init(audio: ";")
             case .quotationMark:
-                return .init("'")
+                return .init(audio: "'")
             case .comma:
-                return .init(",")
+                return .init(audio: ",")
             case .period:
                 // 无法已.开头命名文件名
-                return .init(char: ".", audioName: "period", displayName: ".")
+                return .init(char: ".", type: .audio, audioName: "period", displayName: ".")
             case .slash:
                 // 无法匹配到/命名的文件
-                return .init(char: "/", audioName: "slash", displayName: "/")
+                return .init(char: "/", type: .audio, audioName: "slash", displayName: "/")
             case .backSlash:
-                return .init("\\")
+                return .init(audio: "\\")
             }
         }
     }

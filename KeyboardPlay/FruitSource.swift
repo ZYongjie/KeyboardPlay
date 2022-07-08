@@ -8,6 +8,8 @@
 import Foundation
 
 struct FruitSource: PlayItem {
+    var type: MediaType
+    
     var event: PlayItemGenerator.Event
     
     var audioName: String
@@ -18,29 +20,30 @@ struct FruitSource: PlayItem {
 }
 
 extension FruitSource {
-    init(event: PlayItemGenerator.Event, fruit: String) {
-        self.init(event: event, audioName: fruit, displayName: fruit, imageName: fruit)
+    init(audio withEvent: PlayItemGenerator.Event, fruit: String) {
+        self.init(type: .audio, event: withEvent, audioName: fruit, displayName: fruit, imageName: fruit)
     }
     static var all: [FruitSource] {
         [
-            .init(event: .alphabetKeyDown("a"), fruit: "apple"),
-            .init(event: .alphabetKeyDown("b"), fruit: "banana"),
-            .init(event: .alphabetKeyDown("c"), fruit: "cherry"),
-            .init(event: .alphabetKeyDown("d"), fruit: "durian"),
-            .init(event: .alphabetKeyDown("e"), fruit: "eggplant"),
-            .init(event: .alphabetKeyDown("f"), fruit: "fig"),
-            .init(event: .alphabetKeyDown("g"), fruit: "grape"),
-            .init(event: .alphabetKeyDown("h"), fruit: "haw"),
-            .init(event: .alphabetKeyDown("k"), fruit: "kiwifruit"),
-            .init(event: .alphabetKeyDown("l"), fruit: "lichee"),
-            .init(event: .alphabetKeyDown("m"), fruit: "mango"),
-            .init(event: .alphabetKeyDown("n"), fruit: "nectarine"),
-            .init(event: .alphabetKeyDown("o"), fruit: "orange"),
-            .init(event: .alphabetKeyDown("p"), fruit: "pear"),
-            .init(event: .alphabetKeyDown("r"), fruit: "rambutan"),
-            .init(event: .alphabetKeyDown("s"), fruit: "strawberry"),
-            .init(event: .alphabetKeyDown("t"), fruit: "tangerine"),
-            .init(event: .alphabetKeyDown("w"), fruit: "watermelon"),
+            .init(audio: .alphabetKeyDown("a"), fruit: "apple"),
+            .init(type: .video, event: .alphabetKeyDown("a"), audioName: "launchVideo", displayName: "video"),
+            .init(audio: .alphabetKeyDown("b"), fruit: "banana"),
+            .init(audio: .alphabetKeyDown("c"), fruit: "cherry"),
+            .init(audio: .alphabetKeyDown("d"), fruit: "durian"),
+            .init(audio: .alphabetKeyDown("e"), fruit: "eggplant"),
+            .init(audio: .alphabetKeyDown("f"), fruit: "fig"),
+            .init(audio: .alphabetKeyDown("g"), fruit: "grape"),
+            .init(audio: .alphabetKeyDown("h"), fruit: "haw"),
+            .init(audio: .alphabetKeyDown("k"), fruit: "kiwifruit"),
+            .init(audio: .alphabetKeyDown("l"), fruit: "lichee"),
+            .init(audio: .alphabetKeyDown("m"), fruit: "mango"),
+            .init(audio: .alphabetKeyDown("n"), fruit: "nectarine"),
+            .init(audio: .alphabetKeyDown("o"), fruit: "orange"),
+            .init(audio: .alphabetKeyDown("p"), fruit: "pear"),
+            .init(audio: .alphabetKeyDown("r"), fruit: "rambutan"),
+            .init(audio: .alphabetKeyDown("s"), fruit: "strawberry"),
+            .init(audio: .alphabetKeyDown("t"), fruit: "tangerine"),
+            .init(audio: .alphabetKeyDown("w"), fruit: "watermelon"),
         ]
     }
 }

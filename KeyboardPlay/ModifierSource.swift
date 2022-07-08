@@ -9,6 +9,8 @@ import Foundation
 import AppKit
 
 struct ModifierSource: PlayItem {
+    var type: MediaType
+    
     let flag: NSEvent.ModifierFlags
     
     var event: PlayItemGenerator.Event {
@@ -40,10 +42,10 @@ struct ModifierSource: PlayItem {
 extension ModifierSource {
     static var all: [ModifierSource] {
         [
-            .init(flag: .command, imageName: "alter"),
-            .init(flag: .option, imageName: "win"),
-            .init(flag: .control, imageName: "control"),
-            .init(flag: .shift, imageName: "shift"),
+            .init(type: .audio, flag: .command, imageName: "alter"),
+            .init(type: .audio, flag: .option, imageName: "win"),
+            .init(type: .audio, flag: .control, imageName: "control"),
+            .init(type: .audio, flag: .shift, imageName: "shift"),
         ]
     }
 }

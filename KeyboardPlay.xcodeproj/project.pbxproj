@@ -10,6 +10,7 @@
 		6F842E142864829C006D04A4 /* PlayItemGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F842E132864829C006D04A4 /* PlayItemGenerator.swift */; };
 		6F842E1628654524006D04A4 /* AlphabetSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F842E1528654524006D04A4 /* AlphabetSource.swift */; };
 		6F842E1828655049006D04A4 /* FruitSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F842E1728655049006D04A4 /* FruitSource.swift */; };
+		6F8E1A2C28783C5200203E05 /* launchVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6F8E1A2B287837E800203E05 /* launchVideo.mp4 */; };
 		6F95D8BB286B1491007C911C /* ModifierSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F95D8BA286B1490007C911C /* ModifierSource.swift */; };
 		6F95D8BD286B1BFC007C911C /* UnknownSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F95D8BC286B1BFC007C911C /* UnknownSource.swift */; };
 		6F95D8BF286B1DAF007C911C /* SpecialSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F95D8BE286B1DAF007C911C /* SpecialSource.swift */; };
@@ -104,6 +105,7 @@
 		6FBAEC3D284456190039EE87 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBAEC3C284456190039EE87 /* ViewController.swift */; };
 		6FBAEC3F2844561A0039EE87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FBAEC3E2844561A0039EE87 /* Assets.xcassets */; };
 		6FBAEC422844561A0039EE87 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FBAEC402844561A0039EE87 /* Main.storyboard */; };
+		6FCBDEF128783010001333AC /* MediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FCBDEF028783010001333AC /* MediaType.swift */; };
 		6FD9BB5A286B230E001DD35F /* OtherSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD9BB59286B230E001DD35F /* OtherSource.swift */; };
 		6FD9BB5C286B257C001DD35F /* NumberSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD9BB5B286B257C001DD35F /* NumberSource.swift */; };
 /* End PBXBuildFile section */
@@ -112,6 +114,7 @@
 		6F842E132864829C006D04A4 /* PlayItemGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayItemGenerator.swift; sourceTree = "<group>"; };
 		6F842E1528654524006D04A4 /* AlphabetSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphabetSource.swift; sourceTree = "<group>"; };
 		6F842E1728655049006D04A4 /* FruitSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitSource.swift; sourceTree = "<group>"; };
+		6F8E1A2B287837E800203E05 /* launchVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = launchVideo.mp4; sourceTree = "<group>"; };
 		6F95D8BA286B1490007C911C /* ModifierSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierSource.swift; sourceTree = "<group>"; };
 		6F95D8BC286B1BFC007C911C /* UnknownSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnknownSource.swift; sourceTree = "<group>"; };
 		6F95D8BE286B1DAF007C911C /* SpecialSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialSource.swift; sourceTree = "<group>"; };
@@ -209,6 +212,7 @@
 		6FBAEC412844561A0039EE87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6FBAEC432844561A0039EE87 /* KeyboardPlay.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KeyboardPlay.entitlements; sourceTree = "<group>"; };
 		6FBAEC4928445E9B0039EE87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		6FCBDEF028783010001333AC /* MediaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaType.swift; sourceTree = "<group>"; };
 		6FD9BB59286B230E001DD35F /* OtherSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherSource.swift; sourceTree = "<group>"; };
 		6FD9BB5B286B257C001DD35F /* NumberSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -224,6 +228,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F8E1A2A287837DF00203E05 /* videos */ = {
+			isa = PBXGroup;
+			children = (
+				6F8E1A2B287837E800203E05 /* launchVideo.mp4 */,
+			);
+			path = videos;
+			sourceTree = "<group>";
+		};
 		6F977FEA284760BF00A91EB5 /* audios */ = {
 			isa = PBXGroup;
 			children = (
@@ -357,7 +369,9 @@
 				6FBAEC4928445E9B0039EE87 /* Info.plist */,
 				6FBAEC3A284456190039EE87 /* AppDelegate.swift */,
 				6FBAEC3C284456190039EE87 /* ViewController.swift */,
+				6FCBDEEF28782FF0001333AC /* Media */,
 				6F842E132864829C006D04A4 /* PlayItemGenerator.swift */,
+				6F8E1A2A287837DF00203E05 /* videos */,
 				6F842E1528654524006D04A4 /* AlphabetSource.swift */,
 				6F95D8BA286B1490007C911C /* ModifierSource.swift */,
 				6F95D8BC286B1BFC007C911C /* UnknownSource.swift */,
@@ -370,6 +384,14 @@
 				6FBAEC432844561A0039EE87 /* KeyboardPlay.entitlements */,
 			);
 			path = KeyboardPlay;
+			sourceTree = "<group>";
+		};
+		6FCBDEEF28782FF0001333AC /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				6FCBDEF028783010001333AC /* MediaType.swift */,
+			);
+			path = Media;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -512,6 +534,7 @@
 				6F978057284760BF00A91EB5 /* 9.mp3 in Resources */,
 				6F97803C284760BF00A91EB5 /* l.wav in Resources */,
 				6FBAEC3F2844561A0039EE87 /* Assets.xcassets in Resources */,
+				6F8E1A2C28783C5200203E05 /* launchVideo.mp4 in Resources */,
 				6FB9582A28634B290098368A /* watermelon.mp3 in Resources */,
 				6FB9583128634B290098368A /* grape.mp3 in Resources */,
 				6FB9582D28634B290098368A /* fig.mp3 in Resources */,
@@ -538,6 +561,7 @@
 				6FBAEC3D284456190039EE87 /* ViewController.swift in Sources */,
 				6FBAEC3B284456190039EE87 /* AppDelegate.swift in Sources */,
 				6F95D8BB286B1491007C911C /* ModifierSource.swift in Sources */,
+				6FCBDEF128783010001333AC /* MediaType.swift in Sources */,
 				6FD9BB5C286B257C001DD35F /* NumberSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
