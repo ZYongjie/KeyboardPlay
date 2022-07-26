@@ -36,6 +36,23 @@ extension CarSource {
             .init(name: "school bus"),
             .init(name: "tank truck"),
             .init(name: "tow truck"),
+            .init(name: "airplane"),
+            .init(name: "bicycle"),
+            .init(name: "boat"),
+            .init(name: "bus"),
+            .init(name: "metro"),
+            .init(name: "ship"),
+            .init(name: "taxi"),
+            .init(name: "train"),
+            
+            
+            .init(name: "air conditioning"),
+            .init(name: "bed"),
+            .init(name: "cup"),
+            .init(name: "door"),
+            .init(name: "sofa"),
+            .init(name: "table"),
+            .init(name: "table lamp"),
         ]
     }
 }
