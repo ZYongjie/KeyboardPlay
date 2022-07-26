@@ -107,7 +107,7 @@ class ViewController: NSViewController {
     }
     
     private func display(item: Displayable) {
-        label.stringValue = item.displayName.capitalized
+        label.stringValue = item.displayName
         image.image = .init(named: item.imageName ?? "")
     }
 }

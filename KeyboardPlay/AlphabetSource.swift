@@ -16,7 +16,7 @@ struct AlphabetSource: PlayItem {
         .alphabetKeyDown(char)
     }
     var audioName: String {
-        .init(char)
+        char.lowercased()
     }
     
     var displayName: String {
@@ -35,6 +35,11 @@ struct AlphabetSource: PlayItem {
 extension AlphabetSource {
     static var all: [AlphabetSource] {
         (97...122).compactMap({ Character(UnicodeScalar($0)) })
-            .map({ .init(type: .audio, char: $0) })
+            .reduce([AlphabetSource](), { partialResult, char in
+                return partialResult + [
+                    .init(type: .audio, char: char),
+                    .init(type: .audio, char: char.uppercased().first!)
+                ]
+            })
     }
 }
