@@ -171,11 +171,11 @@ extension PlayItemGenerator {
     class func sources() -> [Event.HashType: [PlayItem]] {
         [
             Event.HashType.unknown: [UnknownSource()],
-            Event.HashType.alphabetKeyDown: groupSourcesByEvent(AlphabetSource.all + FruitSource.all),
+            Event.HashType.alphabetKeyDown: groupSourcesByEvent(AlphabetSource.all + FruitSource.all + CarSource.all),
             Event.HashType.number: NumberSource.all,
             Event.HashType.modifierKeyDown: ModifierSource.all,
             Event.HashType.specialKeyDown: SpecialSource.all,
-            Event.HashType.otherKeyDown: OtherSource.all,
+            Event.HashType.otherKeyDown: OtherSource.all + SymbolSource.all,
         ]
     }
     

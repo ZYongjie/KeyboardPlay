@@ -26,6 +26,10 @@ struct AlphabetSource: PlayItem {
     var imageName: String? {
         .init(char)
     }
+    
+    var fileExtension: String {
+        "wav"
+    }
 }
 
 extension AlphabetSource {
