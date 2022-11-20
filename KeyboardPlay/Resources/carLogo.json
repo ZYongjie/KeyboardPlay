@@ -1,0 +1,24 @@
+{
+    [
+        {
+            "country_en": "China",
+            "country_zh": "中国",
+            "country_owner": "中国",
+            "name_en": "",
+            "name_zh": "广汽",
+            "name_owner": "广汽",
+            "description": "广州汽车",
+            "slogan": null
+        },
+        {
+            "country_en": "Germany",
+            "country_zh": "德国",
+            "country_owner": "Bundesrepublik Deutschland",
+            "name_en": "",
+            "name_zh": "宝马",
+            "name_owner": "Bayerische Motoren Werke AG",
+            "description": "巴伐利亚发动机制造厂股份有限公司（德语：Bayerische Motoren Werke AG， 缩写为BMW），中文通称宝马，是德国一家跨国豪华汽车、摩托车和发动机制造商，总部位于德国巴伐利亚邦的慕尼黑。",
+            "slogan": "纯粹驾驶乐趣"
+        }
+    ]
+}

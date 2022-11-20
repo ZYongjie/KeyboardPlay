@@ -8,8 +8,21 @@
 import Foundation
 import AppKit
 
-protocol PlayItem: Playable, Displayable {
+protocol PlayItemSource {
+    var audio: Playable? { get }
+    var display: Displayable? { get }
+    var next: PlayItemSource? { get }
+    
+//    init(audio: Playable? = nil, display: Displayable? = nil, next: PlayItemSource? = nil) {
+//        self.audio = audio
+//        self.display = display
+//        self.next = next
+//    }
+}
+
+protocol PlayItem {
     var event: PlayItemGenerator.Event { get }
+    var source: PlayItemSource { get }
 }
 
 class PlayItemGenerator {

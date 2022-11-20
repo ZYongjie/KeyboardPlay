@@ -14,6 +14,10 @@ struct SymbolSource: PlayItem {
         .otherKeyDown(char)
     }
     
+//    var source: PlayItemSource {
+//        .init(audio: <#T##Playable?#>, display: <#T##Displayable?#>, next: <#T##PlayItemSource?#>)
+//    }
+    
     var type: MediaType
     
     var audioName: String

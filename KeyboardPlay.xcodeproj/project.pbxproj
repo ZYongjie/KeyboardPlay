@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F701161292A63B9006BB68C /* carLogo.json in Resources */ = {isa = PBXBuildFile; fileRef = 1F701160292A63B9006BB68C /* carLogo.json */; };
 		6F2C8E71288FF7B8003BA763 /* bus.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6F2C8E69288FF7B8003BA763 /* bus.mp3 */; };
 		6F2C8E72288FF7B8003BA763 /* boat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6F2C8E6A288FF7B8003BA763 /* boat.mp3 */; };
 		6F2C8E73288FF7B8003BA763 /* ship.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6F2C8E6B288FF7B8003BA763 /* ship.mp3 */; };
@@ -159,6 +160,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F701160292A63B9006BB68C /* carLogo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = carLogo.json; sourceTree = "<group>"; };
 		6F2C8E69288FF7B8003BA763 /* bus.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bus.mp3; sourceTree = "<group>"; };
 		6F2C8E6A288FF7B8003BA763 /* boat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = boat.mp3; sourceTree = "<group>"; };
 		6F2C8E6B288FF7B8003BA763 /* ship.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ship.mp3; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 		6F9A52D7287C167400889C32 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1F701160292A63B9006BB68C /* carLogo.json */,
 				6F9A52D8287C167400889C32 /* audios */,
 				6F9A5335287C167400889C32 /* videos */,
 			);
@@ -762,6 +765,7 @@
 				6F9A5383287C167400889C32 /* apple.mp3 in Resources */,
 				6F9A5361287C167400889C32 /* +.mp3 in Resources */,
 				6F9A538B287C167400889C32 /* tangerine.mp3 in Resources */,
+				1F701161292A63B9006BB68C /* carLogo.json in Resources */,
 				6F9A535B287C167400889C32 /* `.mp3 in Resources */,
 				6F9A535C287C167400889C32 /* ".mp3 in Resources */,
 				6F9A53AD287C20EA00889C32 /* &.mp3 in Resources */,

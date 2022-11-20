@@ -7,7 +7,17 @@
 
 import Foundation
 
-struct AlphabetSource: PlayItem {
+struct AlphabetSource: PlayItemSource {
+    var audio: Playable? {
+        Audio(type: .audio, audioName: char.lowercased())
+    }
+    
+    var display: Displayable? {
+        
+    }
+    
+    var next: PlayItemSource?
+    
     var type: MediaType
     
     let char: Character

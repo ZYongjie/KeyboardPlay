@@ -10,7 +10,7 @@ import AVFoundation
 
 protocol Playable {
     var type: MediaType { get }
-    var audioName: String { get }
+    var name: String { get }
     var fileExtension: String { get }
 }
 
@@ -27,7 +27,21 @@ extension Playable {
 
 protocol Displayable {
     var displayName: String { get }
-    var imageName: String? { get }
+    var name: String? { get }
+}
+
+struct Audio: Playable {
+    var type: MediaType
+    var name: String
+}
+
+struct Video: Playable {
+    var type: MediaType
+    var name: String
+}
+
+struct Image {
+    var name: String
 }
 
 class ViewController: NSViewController {
